@@ -1,1 +1,12 @@
-2018-03-22
+### 2018-03-22 - Backend Implementation
+- Create slido project in Github
+- Install necessary npm modules
+- Implement server with Express
+- Implement authentication
+- Implement REST API:  
+    - /api/events: GET, POST
+    - /api/questions: POST, PUT, DELETE
+- Install mongo db
+- Create fake data for testing
+- Deploy to heroku
+- Test on local machine and heroku manually
