@@ -1,0 +1,20 @@
+[
+    {
+        "eventId": "",
+        "question": "Hello World",
+        "isHighlight": false,
+        "author": "Anonymous"
+    },
+    {
+        "eventId": "",
+        "question": "Be creative",
+        "isHighlight": false,
+        "author": "Anonymous"
+    },
+    {
+        "eventId": "",
+        "question": "Can any one help?",
+        "isHighlight": true,
+        "author": "Anonymous"
+    }
+]

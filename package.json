@@ -1,0 +1,34 @@
+{
+  "name": "slido",
+  "version": "1.0.0",
+  "description": "slido",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binhfoto/slido.git"
+  },
+  "author": "binhfoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binhfoto/slido/issues"
+  },
+  "homepage": "https://github.com/binhfoto/slido#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "colors": "^1.2.1",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.2.0",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.5",
+    "method-override": "^2.3.10",
+    "moment": "^2.21.0",
+    "mongoose": "^5.0.11",
+    "morgan": "^1.9.0"
+  }
+}
