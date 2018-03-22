@@ -20,9 +20,9 @@ module.exports = {
     },
     get: (req, res, next) => {
         Model
-            .find()
+            .find({})
             .exec()
-            .then(res.json, next);
+            .then(res.json.bind(res), next);
     },
     getOne: (req, res) => {
         res.json(req.event);
@@ -31,6 +31,6 @@ module.exports = {
         Model
             // 'create' event will trigger some mongoose middleware, such as preSave
             .create(req.body)
-            .then(res.json, next);
+            .then(res.json.bind(res), next);
     }
 };

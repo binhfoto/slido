@@ -12,7 +12,8 @@ var _schema = new Schema({
         required: true
     },
     author: {
-        type: String
+        type: String,
+        default: 'Anonymous'
     },
     isHighlight : {
         type: Boolean,

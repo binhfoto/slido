@@ -23,7 +23,7 @@ module.exports = {
         Model
         // 'create' event will trigger some mongoose middleware, such as preSave
             .create(req.body)
-            .then(res.json, next);
+            .then(res.json.bind(res), next);
     },
     put: (req, res, next) => {
         let currentQuestion = req.question;

@@ -5,7 +5,7 @@ const config = require('./config/index');
 const logger = require('./util/logger');
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 mongoose.connect(config.db.url);
 if (config.seed) {
     require('./create-data');
