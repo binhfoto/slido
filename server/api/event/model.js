@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var _schema = new Schema({
+const _schema = new Schema({
     name: {
         type: String,
         required: true

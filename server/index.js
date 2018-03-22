@@ -26,13 +26,13 @@ app.use('/auth', auth);
 
 
 // public resource
-app.use('/', express.static(__dirname + '/../public'));
+app.use('/',     express.static(__dirname + '/../public'));
 app.use('/icon', express.static(__dirname + '/../public/icon'));
 app.use('/dist', express.static(__dirname + '/../dist'));
 
 
 // error handler
-app.use(function (err, req, res) {
+app.use((err, req, res) => {
     if (err.name === 'UnauthorizedError') {
         res.status(401).send('Invalid token');
         return;

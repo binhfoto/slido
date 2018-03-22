@@ -1,7 +1,7 @@
 const { merge } = require('lodash');
 
 // default config object for our api
-let config = {
+const config = {
     // just placing the name of our possible NDOE_ENV values for later
     // depend on what env we are in, corresponding env file will be loaded (development.js || production.js)
     dev: 'development', // same name as development.js
