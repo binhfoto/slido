@@ -1,7 +1,7 @@
 {
   "name": "slido",
   "version": "1.0.0",
-  "description": "",
+  "description": "slido",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/binhfoto/slido#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "colors": "^1.2.1",
     "express": "^4.16.3",

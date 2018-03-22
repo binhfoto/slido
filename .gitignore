@@ -57,6 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
-.idea/
-/.idea/modules.xml
-/.idea/workspace.xml
+# exclude intelliJ file
+.idea/*
+
+# exclude mongo data
+mongo-data/*
