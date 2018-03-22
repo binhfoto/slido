@@ -32,7 +32,7 @@ app.use('/dist', express.static(__dirname + '/../dist'));
 
 
 // error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         res.status(401).send('Invalid token');
         return;
