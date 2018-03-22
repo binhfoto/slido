@@ -19,6 +19,12 @@ module.exports = {
                 next
             );
     },
+    get: (req, res, next) => {
+        Model
+            .find({})
+            .exec()
+            .then(res.json.bind(res), next);
+    },
     post: (req, res, next) => {
         Model
         // 'create' event will trigger some mongoose middleware, such as preSave

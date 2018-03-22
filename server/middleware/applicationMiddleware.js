@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const override = require('method-override');
 
 // setup global middleware here
-module.exports = function (app) {
+module.exports = app => {
     app.use(morgan('dev'));
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());

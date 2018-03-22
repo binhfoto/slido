@@ -1,5 +1,5 @@
 // create api router
-var router = require('express').Router();
+const router = require('express').Router();
 
 // api router will mount other routers for all our resources
 // each resource directory has a resourceRoute.js file with the router ready to go

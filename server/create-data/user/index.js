@@ -11,16 +11,16 @@ const data = JSON.parse(content);
 const createDoc = require('../util/createDocument');
 const model = require('../../api/' + MODEL_NAME + '/model');
 
-const create = function(params) {
+const create = params => {
 
     logger.log('Mongo - Creating', data.length, MODEL_NAME + '(s)');
 
-    const promises = data.map(function(item){
+    const promises = data.map(item => {
         return createDoc(model, item);
     });
 
     return Promise.all(promises)
-        .then(function(items) {
+        .then(items => {
             return merge({users: items}, params || {});
         });
 }

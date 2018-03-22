@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var _schema = new Schema({
+const _schema = new Schema({
     username: {
         type: String,
         unique: true,
@@ -32,7 +32,7 @@ _schema.methods = {
         if (!plainTextPass) {
             return '';
         } else {
-            var salt = bcrypt.genSaltSync(10);
+            const salt = bcrypt.genSaltSync(10);
             return bcrypt.hashSync(plainTextPass, salt);
         }
     }
