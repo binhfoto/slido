@@ -1,0 +1,14 @@
+.sign-in {
+    margin-top: 20vh;
+    min-width: 400px;
+}
+
+.sign-in .form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.sign-in .form .submit {
+    margin: 10px 0px 0px auto;
+}

@@ -1,8 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
+const config = require('./server/config');
 
 const webpackConfig = {
 
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval',
 
     mode: 'development',
 
@@ -40,6 +42,26 @@ const webpackConfig = {
                 ]
             }
         ]
+    },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            ADMIN_API_URL: JSON.stringify(config.url),
+            ENABLE_REDUX_DEV_TOOL: JSON.stringify(true)
+        })
+    ],
+
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                default: false,
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
     },
 };
 

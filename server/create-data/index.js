@@ -18,4 +18,4 @@ cleanDB() // pass data to next function
     .then(event.create)
     .then(question.create)
     // log fake data to console
-    .then(logger.log.bind(logger))
+    //.then(logger.log.bind(logger))

@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const config = require('./server/config');
 
 const webpackConfig = {
 
@@ -39,6 +41,13 @@ const webpackConfig = {
             }
         ]
     },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            ADMIN_API_URL: JSON.stringify(config.url), // -> '"url"'
+            ENABLE_REDUX_DEV_TOOL: JSON.stringify(false)
+        })
+    ]
 };
 
 module.exports = webpackConfig;
