@@ -2,7 +2,8 @@ import {
     SIGNIN_FAIL,
     SIGNIN_REQUEST,
     SIGNIN_SUCCESS,
-    RESET_ERROR_MESSAGE
+    RESET_ERROR_MESSAGE,
+    SIGNOUT
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -22,3 +23,5 @@ export const signInFail = (error) => ({
 });
 
 export const resetErrorMessage = () => ({type: RESET_ERROR_MESSAGE});
+
+export const signOut = () => ({type: SIGNOUT});

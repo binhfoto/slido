@@ -6,18 +6,26 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import {
+    HOME_ROUTE,
     EVENT_MANAGEMENT_ROUTE,
-    SIGN_IN_ROUTE,
-    HOME_ROUTE
+    SIGN_IN_ROUTE
 } from '../constants';
+import {signOut} from "../action";
+import Token from '../service/token';
 
-const Header = ({isSignedIn = false, title = 'Sli.do', onLogout, location: {pathname}, history}) => {
+const Header = ({isSignedIn = false, title = 'Sli.do', onSignOut, location: {pathname}, history}) => {
 
     let logIn, logOut, events;
 
+    const _onSignOut = () => {
+        Token.remove();
+        onSignOut();
+        (pathname !== HOME_ROUTE) && history.push(HOME_ROUTE);
+    };
+
     if (pathname !== SIGN_IN_ROUTE) {
         if (isSignedIn) {
-            logOut = <Button color="inherit" onClick={onLogout}>Logout</Button>;
+            logOut = <Button color="inherit" onClick={_onSignOut}>Logout</Button>;
             events = <Button color="inherit" onClick={() => history.push(EVENT_MANAGEMENT_ROUTE)}>Events</Button>
         } else {
             logIn = <Button color="inherit" onClick={() => history.push(SIGN_IN_ROUTE)}>Login</Button>
@@ -41,6 +49,7 @@ const Header = ({isSignedIn = false, title = 'Sli.do', onLogout, location: {path
 
 export default withRouter(
     connect(
-        ({isSignedIn}) => ({isSignedIn})
+        ({isSignedIn}) => ({isSignedIn}),
+        {onSignOut: signOut}
     )(Header)
 );

@@ -2,6 +2,7 @@ import '../style/signIn.css';
 
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import Card, {CardContent, CardHeader} from 'material-ui/Card';
 import Button from 'material-ui/Button';
@@ -17,6 +18,12 @@ class SignIn extends PureComponent {
         evt.preventDefault();
         if ((!this.usernameInput || !this.passwordInput) || !this.usernameInput.value || !this.passwordInput.value) return;
         this.props.onSubmit(this.usernameInput.value, this.passwordInput.value);
+    }
+
+    componentWillReceiveProps ({isSignedIn = false}) {
+        if (isSignedIn) {
+            this.props.history.push('/');
+        }
     }
 
     render () {
@@ -62,7 +69,9 @@ class SignIn extends PureComponent {
     }
 }
 
-export default connect(
-    ({isLoading}) => ({isLoading}),
-    {onSubmit: signIn}
-)(SignIn);
+export default withRouter(
+    connect(
+        ({isLoading, isSignedIn}) => ({isLoading, isSignedIn}),
+        {onSubmit: signIn}
+    )(SignIn)
+);

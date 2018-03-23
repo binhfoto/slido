@@ -4,7 +4,8 @@ import {
     SIGNIN_REQUEST,
     SIGNIN_SUCCESS,
     SIGNIN_FAIL,
-    RESET_ERROR_MESSAGE
+    RESET_ERROR_MESSAGE,
+    SIGNOUT
 } from '../constants';
 
 
@@ -13,6 +14,7 @@ const isSignedIn = (state = true, {type}) => {
         case SIGNIN_SUCCESS:
             return true;
         case SIGNIN_FAIL:
+        case SIGNOUT:
             return false;
         default:
             return state;
