@@ -23,7 +23,7 @@ const EventDetail = ({event, isSignedIn}) => {
         <div className="event-detail">
             <Card>
                 <CardContent>
-                    <Typography gutterBottom variant="headline" component="h3">
+                    <Typography gutterBottom variant="subheading">
                         {event.name}
                     </Typography>
                     <Typography color="textSecondary">

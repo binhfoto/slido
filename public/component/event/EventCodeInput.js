@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
-import SearchIcon from 'material-ui-icons/Search';
+import EnterIcon from 'material-ui-icons/Event';
 import {CircularProgress} from 'material-ui/Progress';
 import Card, {CardContent} from 'material-ui/Card';
 import Notification from '../Notification';
@@ -42,13 +42,13 @@ class EventCodeInput extends Component {
                             <TextField
                                 id="eventCode"
                                 label="event code"
-                                placeholder="enter code here"
+                                placeholder="#"
                                 margin="normal"
                                 className="input"
                                 inputRef={field => {this.eventCodeInput = field;}}
                             />
                             <IconButton aria-label="Go" type="submit">
-                                {this.state.isLoading ? <CircularProgress size={24}/> : <SearchIcon />}
+                                {this.state.isLoading ? <CircularProgress size={24}/> : <EnterIcon />}
                             </IconButton>
                         </form>
                     </CardContent>

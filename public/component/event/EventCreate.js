@@ -32,7 +32,7 @@ class EventCreate extends PureComponent {
             <div className="event-create">
                 <Card>
                     <CardContent className="column-layout">
-                        <Typography gutterBottom variant="headline" component="h3">
+                        <Typography gutterBottom variant="subheading">
                             Create Event
                         </Typography>
                         <TextField
