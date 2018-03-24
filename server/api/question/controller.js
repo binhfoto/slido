@@ -36,8 +36,9 @@ module.exports = {
             }, next);
     },
     put: (req, res, next) => {
-        let currentQuestion = req.question;
         const newQuestion = req.body;
+        let currentQuestion = req.question;
+
 
         merge(currentQuestion, newQuestion);
 

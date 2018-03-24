@@ -14,4 +14,6 @@
 ### 2018-03-23 - Frontend Implementation
 1. Setup webpack for React
 2. Config babel
-3. ... 
+
+### 2018-03-24 - Frontend Implementation
+1. 

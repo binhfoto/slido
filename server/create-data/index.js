@@ -6,7 +6,8 @@ const question = require('./question');
 
 const MODELS = [user.model, event.model, question.model];
 
-const cleanDB = function(){
+const cleanDB = function() {
+    logger.log('Mongo - Cleaning up DB');
     const cleanPromises = MODELS.map(function(model){
         return model.remove().exec();
     });

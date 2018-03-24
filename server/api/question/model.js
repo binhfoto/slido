@@ -18,7 +18,25 @@ const _schema = new Schema({
     isHighlight : {
         type: Boolean,
         default: false
+    },
+    vote: {
+        type: Number,
+        default: 0
+    },
+    created: {
+        type: Date,
+        default: Date.now()
+    },
+    updated: {
+        type: Date,
+        default: Date.now()
     }
+});
+
+_schema.pre('save', function (next) {
+    this.updated = Date.now();
+
+    next();
 });
 
 module.exports = mongoose.model('question', _schema);

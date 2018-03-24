@@ -6,11 +6,11 @@ import {fetchEvents} from '../../action';
 
 class EventManagement extends PureComponent {
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.fetchEvents();
     }
 
-    render () {
+    render() {
         return (
             <div>
                 <EventCreate/>

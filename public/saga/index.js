@@ -4,7 +4,8 @@ import {
     SIGNIN_REQUEST,
     FETCH_EVENT_REQUEST,
     FETCH_EVENTS_REQUEST,
-    CREATE_EVENT_REQUEST
+    CREATE_EVENT_REQUEST,
+    POST_QUESTION_REQUEST
 } from '../constants';
 
 import {
@@ -15,7 +16,9 @@ import {
     fetchEventsSuccess,
     fetchEventsFail,
     createEventSuccess,
-    createEventFail
+    createEventFail,
+    postQuestionSuccess,
+    postQuestionFail
 } from '../action';
 
 import Api from '../service/api';
@@ -78,6 +81,19 @@ function * createEvent () {
     yield takeEvery(CREATE_EVENT_REQUEST, watchCreateEvent);
 }
 
+/********************************POST QUESTION SAGA********************************/
+function * watchPostQuestion (action) {
+    const {question, error} = yield call(Api.postQuestion, action.question);
+    if (question) {
+        yield put(postQuestionSuccess(question));
+    } else {
+        yield put(postQuestionFail(error));
+    }
+}
+
+function * postQuestion () {
+    yield takeEvery(POST_QUESTION_REQUEST, watchPostQuestion);
+}
 
 /********************************ROOT SAGA********************************/
 export default function * () {
@@ -85,6 +101,7 @@ export default function * () {
         signIn(),
         fetchEventByCode(),
         fetchEvents(),
-        createEvent()
+        createEvent(),
+        postQuestion()
     ]);
 };

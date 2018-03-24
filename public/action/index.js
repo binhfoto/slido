@@ -13,7 +13,10 @@ import {
     FETCH_EVENTS_FAIL,
     CREATE_EVENT_REQUEST,
     CREATE_EVENT_SUCCESS,
-    CREATE_EVENT_FAIL
+    CREATE_EVENT_FAIL,
+    POST_QUESTION_REQUEST,
+    POST_QUESTION_SUCCESS,
+    POST_QUESTION_FAIL
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -60,3 +63,7 @@ export const createEventFail = (error) => ({type: CREATE_EVENT_FAIL, error});
 export const fetchEvents = () => ({type: FETCH_EVENTS_REQUEST});
 export const fetchEventsSuccess = (events) => ({type: FETCH_EVENTS_SUCCESS, events});
 export const fetchEventsFail = (error) => ({type: FETCH_EVENTS_FAIL, error});
+
+export const postQuestion = (question) => ({type: POST_QUESTION_REQUEST, question});
+export const postQuestionSuccess = (newQuestion) => ({type: POST_QUESTION_SUCCESS, event: {newQuestion}});
+export const postQuestionFail = (error) => ({type: POST_QUESTION_FAIL, error});

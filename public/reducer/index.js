@@ -15,7 +15,9 @@ import {
     FETCH_EVENTS_FAIL,
     CREATE_EVENT_REQUEST,
     CREATE_EVENT_SUCCESS,
-    CREATE_EVENT_FAIL
+    CREATE_EVENT_FAIL,
+    POST_QUESTION_SUCCESS,
+    POST_QUESTION_FAIL
 } from '../constants';
 
 
@@ -56,10 +58,14 @@ const isLoading = (state = false, {type}) => {
 };
 
 const errorMessage = (state = null, {type, error}) => {
-    /*if (type.endsWith('_FAIL')) return error.message || error;
-    return null; *///RESET_ERROR_MESSAGE returns null
+    if (type == POST_QUESTION_SUCCESS) {
+        return 'Post question successfully'
+    }else if (type.endsWith('_FAIL')) {
+        return error.message || error
+    }
+    return null; // RESET_ERROR_MESSAGE returns null
 
-    switch (type) {
+    /*switch (type) {
         case SIGNIN_FAIL:
         case FETCH_EVENT_FAIL:
         case CREATE_EVENT_FAIL:
@@ -68,7 +74,7 @@ const errorMessage = (state = null, {type, error}) => {
         case RESET_ERROR_MESSAGE:
         default:
             return null;
-    }
+    }*/
 };
 
 const event = (state = null, {type, event}) => {
@@ -78,6 +84,10 @@ const event = (state = null, {type, event}) => {
         case FETCH_EVENT_FAIL:
         case RESET_EVENT:
             return null;
+        case POST_QUESTION_SUCCESS: {
+            state.questions = state.questions.concat(event.newQuestion);
+            return state;
+        }
         default:
             return state;
     }

@@ -11,7 +11,7 @@ const Notification = ({errorMessage, resetErrorMessage}) => (
         }}
         open={errorMessage !== null}
         onClose={resetErrorMessage}
-        autoHideDuration={3000}
+        autoHideDuration={4000}
         SnackbarContentProps={{
             'aria-describedby': 'message-id',
         }}
