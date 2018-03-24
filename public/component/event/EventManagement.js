@@ -1,5 +1,25 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import EventTable from './EventTable';
+import {fetchEvents} from '../../action';
 
-const EventManagement = () => <span>EventManagement</span>;
+class EventManagement extends PureComponent{
 
-export default EventManagement;
+    componentDidMount () {
+        this.props.fetchEvents();
+    }
+
+    render () {
+        return (
+            <div>
+                <EventTable/>
+            </div>
+        );
+    }
+}
+
+
+export default connect(
+    () => null,
+    {fetchEvents}
+)(EventManagement);

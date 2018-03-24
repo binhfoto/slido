@@ -9,7 +9,13 @@ import {
     FETCH_EVENT_REQUEST,
     FETCH_EVENT_SUCCESS,
     FETCH_EVENT_FAIL,
-    RESET_EVENT
+    RESET_EVENT,
+    FETCH_EVENTS_REQUEST,
+    FETCH_EVENTS_SUCCESS,
+    FETCH_EVENTS_FAIL,
+    CREATE_EVENT_REQUEST,
+    CREATE_EVENT_SUCCESS,
+    CREATE_EVENT_FAIL
 } from '../constants';
 
 
@@ -26,21 +32,34 @@ const isSignedIn = (state = true, {type}) => {
 };
 
 const isLoading = (state = false, {type}) => {
+
+    if(type.endsWith('_REQUEST')) return true;
+    else if(type.endsWith('_SUCCESS') || type.endsWith('_FAIL')) return false;
+    return state;
+    /*
     switch (type) {
         case SIGNIN_REQUEST:
         case FETCH_EVENT_REQUEST:
+        case CREATE_EVENT_REQUEST:
+        case FETCH_EVENTS_REQUEST:
             return true;
         case SIGNIN_SUCCESS:
         case SIGNIN_FAIL:
         case FETCH_EVENT_SUCCESS:
         case FETCH_EVENT_FAIL:
+        case FETCH_EVENTS_SUCCESS:
+        case FETCH_EVENTS_FAIL:
             return false;
         default:
             return state;
-    }
+    }*/
 };
 
 const errorMessage = (state = null, {type, error}) => {
+
+    if (type.endsWith('_FAIL')) return error.message || error;
+    return null; //RESET_ERROR_MESSAGE returns null
+    /*
     switch (type) {
         case SIGNIN_FAIL:
         case FETCH_EVENT_FAIL:
@@ -48,7 +67,7 @@ const errorMessage = (state = null, {type, error}) => {
         case RESET_ERROR_MESSAGE:
         default:
             return null;
-    }
+    }*/
 };
 
 const event = (state = null, {type, event}) => {
@@ -61,13 +80,28 @@ const event = (state = null, {type, event}) => {
         default:
             return state;
     }
-}
+};
+
+const events = (state = [], {type, events}) => {
+    switch (type) {
+        case FETCH_EVENTS_SUCCESS:
+            return events;
+        case FETCH_EVENTS_FAIL:
+            return [];
+        case CREATE_EVENT_SUCCESS: {
+            return [...events, ...state];
+        }
+        default:
+            return state;
+    }
+};
 
 const rootReducer = combineReducers({
     isSignedIn,
     isLoading,
     errorMessage,
-    event
+    event,
+    events
 });
 
 export default rootReducer;

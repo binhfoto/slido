@@ -4,7 +4,7 @@ import Token from './token';
 const getEndPoint = (endpoint) => [ ADMIN_API_URL, endpoint ].join('');
 const withAuthHeader = (token) => {
     return {
-        'Authorization': `Token ${token}`
+        'Authorization': `${token}`
     };
 };
 
@@ -21,6 +21,26 @@ const Api = {
         const endpoint = getEndPoint(`/api/events/${code}`);
         return axios
             .get(endpoint)
+            .then(response => ({ event: response.data.event }))
+            .catch(response => ({ error: response.response.data }));
+    },
+
+    fetchEvents: () => {
+        const endpoint = getEndPoint(`/api/events`);
+        return axios
+            .get(endpoint, {
+                headers: withAuthHeader(Token.get())
+            })
+            .then(response => ({ events: response.data.events }))
+            .catch(response => ({ error: response.response.data }));
+    },
+
+    createEvent: (event) => {
+        const endpoint = getEndPoint(`/api/events`);
+        return axios
+            .post(endpoint, event, {
+                headers: withAuthHeader(Token.get())
+            })
             .then(response => ({ event: response.data.event }))
             .catch(response => ({ error: response.response.data }));
     }

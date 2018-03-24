@@ -7,7 +7,13 @@ import {
     FETCH_EVENT_REQUEST,
     FETCH_EVENT_SUCCESS,
     FETCH_EVENT_FAIL,
-    RESET_EVENT
+    RESET_EVENT,
+    FETCH_EVENTS_REQUEST,
+    FETCH_EVENTS_SUCCESS,
+    FETCH_EVENTS_FAIL,
+    CREATE_EVENT_REQUEST,
+    CREATE_EVENT_SUCCESS,
+    CREATE_EVENT_FAIL
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -46,3 +52,11 @@ export const fetchEventByCodeFail = error => ({
 });
 
 export const resetEvent = () => ({type: RESET_EVENT});
+
+export const createEvent = (event) => ({type: CREATE_EVENT_REQUEST, event});
+export const createEventSuccess = () => ({type: CREATE_EVENT_SUCCESS});
+export const createEventFail = (error) => ({type: CREATE_EVENT_FAIL, error});
+
+export const fetchEvents = () => ({type: FETCH_EVENTS_REQUEST});
+export const fetchEventsSuccess = (events) => ({type: FETCH_EVENTS_SUCCESS, events});
+export const fetchEventsFail = (error) => ({type: FETCH_EVENTS_FAIL, error});
