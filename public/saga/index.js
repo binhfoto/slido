@@ -65,10 +65,10 @@ function * fetchEvents () {
 }
 
 /********************************CREATE EVENT SAGA********************************/
-function * watchCreateEvent ({event}) {
-    const {_event, error} = yield call(Api.createEvent, event);
-    if (_event) {
-        yield put(createEventSuccess(_event));
+function * watchCreateEvent (action) {
+    const {event, error} = yield call(Api.createEvent, action.event);
+    if (event) {
+        yield put(createEventSuccess([event]));
     } else {
         yield put(createEventFail(error));
     }

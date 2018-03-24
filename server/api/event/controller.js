@@ -25,6 +25,7 @@ module.exports = {
     get: (req, res, next) => {
         Model
             .find({})
+            .sort('-from') // sort descending From
             .exec()
             .then(events => {
                 res.json({events});
@@ -49,6 +50,8 @@ module.exports = {
         Model
             // 'create' event will trigger some mongoose middleware, such as preSave
             .create(req.body)
-            .then(res.json.bind(res), next);
+            .then(event => {
+                res.json({event});
+            }, next);
     }
 };

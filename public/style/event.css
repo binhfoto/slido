@@ -1,7 +1,18 @@
-.event-detail {
+.event-detail, .event-create {
     position: absolute;
     top: 88px;
     left: 0;
     min-width: 200px;
     max-width: 400px;
+}
+
+.event-create .column-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.event-create .row-layout .row-item {
+
 }

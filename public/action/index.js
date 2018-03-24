@@ -54,7 +54,7 @@ export const fetchEventByCodeFail = error => ({
 export const resetEvent = () => ({type: RESET_EVENT});
 
 export const createEvent = (event) => ({type: CREATE_EVENT_REQUEST, event});
-export const createEventSuccess = () => ({type: CREATE_EVENT_SUCCESS});
+export const createEventSuccess = (events) => ({type: CREATE_EVENT_SUCCESS, events}); // just array with one event
 export const createEventFail = (error) => ({type: CREATE_EVENT_FAIL, error});
 
 export const fetchEvents = () => ({type: FETCH_EVENTS_REQUEST});

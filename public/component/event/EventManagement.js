@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import EventTable from './EventTable';
+import EventCreate from './EventCreate';
 import {fetchEvents} from '../../action';
 
-class EventManagement extends PureComponent{
+class EventManagement extends PureComponent {
 
     componentDidMount () {
         this.props.fetchEvents();
@@ -12,6 +13,7 @@ class EventManagement extends PureComponent{
     render () {
         return (
             <div>
+                <EventCreate/>
                 <EventTable/>
             </div>
         );
@@ -20,6 +22,6 @@ class EventManagement extends PureComponent{
 
 
 export default connect(
-    () => null,
+    () => ({}),
     {fetchEvents}
 )(EventManagement);

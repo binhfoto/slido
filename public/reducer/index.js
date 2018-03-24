@@ -56,18 +56,19 @@ const isLoading = (state = false, {type}) => {
 };
 
 const errorMessage = (state = null, {type, error}) => {
+    /*if (type.endsWith('_FAIL')) return error.message || error;
+    return null; *///RESET_ERROR_MESSAGE returns null
 
-    if (type.endsWith('_FAIL')) return error.message || error;
-    return null; //RESET_ERROR_MESSAGE returns null
-    /*
     switch (type) {
         case SIGNIN_FAIL:
         case FETCH_EVENT_FAIL:
+        case CREATE_EVENT_FAIL:
+        case FETCH_EVENTS_FAIL:
             return error.message || error;
         case RESET_ERROR_MESSAGE:
         default:
             return null;
-    }*/
+    }
 };
 
 const event = (state = null, {type, event}) => {
@@ -89,7 +90,7 @@ const events = (state = [], {type, events}) => {
         case FETCH_EVENTS_FAIL:
             return [];
         case CREATE_EVENT_SUCCESS: {
-            return [...events, ...state];
+            return [].concat(events, state);
         }
         default:
             return state;
