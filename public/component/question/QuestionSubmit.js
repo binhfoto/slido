@@ -27,7 +27,7 @@ class QuestionSubmit extends PureComponent {
                 <CardContent>
                     <TextField
                         id="question"
-                        label="question"
+                        label="ask question"
                         fullWidth={true}
                         inputRef={field => this.questionInput = field}
                     />
@@ -35,6 +35,7 @@ class QuestionSubmit extends PureComponent {
                     <TextField
                         id="author"
                         label="author (optional)"
+                        defaultValue={this.props.isSignedIn ? 'admin' : ''}
                         fullWidth={true}
                         inputRef={field => this.authorInput = field}
                     />
@@ -50,6 +51,6 @@ class QuestionSubmit extends PureComponent {
 }
 
 export default connect(
-    ({isLoading, event}) => ({isLoading, event}),
+    ({isLoading, event, isSignedIn}) => ({isLoading, event, isSignedIn}),
     {postQuestion}
 )(QuestionSubmit);

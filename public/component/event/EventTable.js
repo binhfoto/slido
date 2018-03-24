@@ -4,7 +4,7 @@ import moment from "moment";
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui-icons/Delete';
+import DeleteIcon from 'material-ui-icons/Clear';
 
 import {DATE_TIME_FORMAT} from "../../constants";
 

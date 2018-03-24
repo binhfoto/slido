@@ -6,6 +6,10 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {HashRouter} from 'react-router-dom';
 
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { createMuiTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+
 import rootSaga from '../saga';
 import rootReducer from '../reducer';
 
@@ -15,6 +19,12 @@ import Content from './Content';
 
 
 const App = () => {
+
+    const theme = createMuiTheme({
+        palette: {
+            primary: blue,
+        },
+    });
 
     const initialState = {
         isSignedIn: !Token.get() ? false : true
@@ -30,12 +40,14 @@ const App = () => {
 
     return (
         <Provider store={store}>
-            <HashRouter>
-                <div className="container">
-                    <Header/>
-                    <Content/>
-                </div>
-            </HashRouter>
+            <MuiThemeProvider theme={theme}>
+                <HashRouter>
+                    <div className="container">
+                        <Header/>
+                        <Content/>
+                    </div>
+                </HashRouter>
+            </MuiThemeProvider>
         </Provider>
     );
 };

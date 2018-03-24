@@ -2,9 +2,10 @@ import '../../style/event.css';
 import moment from 'moment';
 import React from 'react';
 import {connect} from 'react-redux';
-import Card, {CardContent, CardActions} from 'material-ui/Card';
+import Card, {CardContent, CardActions, CardHeader} from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
-import DeleteIcon from 'material-ui-icons/Delete';
+import DeleteIcon from 'material-ui-icons/Clear';
 import Typography from 'material-ui/Typography';
 import {
     DATE_TIME_FORMAT
@@ -13,22 +14,21 @@ import {
 const EventDetail = ({event, isSignedIn}) => {
 
     const action = (
-        <CardActions>
-            <Button variant="fab" mini aria-label="delete" color="secondary">
-                <DeleteIcon />
-            </Button>
-        </CardActions>
+        <IconButton color="secondary">
+            <DeleteIcon/>
+        </IconButton>
     );
+
     return (
         <div className="event-detail">
             <Card>
+                <CardHeader
+                    title={event.name}
+                    subheader={`#${event.code}`}
+                    action={isSignedIn ? action : null}
+                />
                 <CardContent>
-                    <Typography gutterBottom variant="subheading">
-                        {event.name}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        {`#${event.code}`}
-                    </Typography>
+
                     <Typography component="p">
                         {`Start: ${moment(event.from).format(DATE_TIME_FORMAT)}`}
                     </Typography>
@@ -36,7 +36,6 @@ const EventDetail = ({event, isSignedIn}) => {
                         {`End: ${moment(event.to).format(DATE_TIME_FORMAT)}`}
                     </Typography>
                 </CardContent>
-                {isSignedIn ? action : null}
             </Card>
         </div>
     );
@@ -45,3 +44,11 @@ const EventDetail = ({event, isSignedIn}) => {
 export default connect(
     ({event, isSignedIn}) => ({event, isSignedIn})
 )(EventDetail);
+
+
+/*<Typography gutterBottom variant="subheading">
+                        {event.name}
+                    </Typography>
+                    <Typography color="textSecondary">
+                        {`#${event.code}`}
+                    </Typography>*/

@@ -67,7 +67,7 @@ class SignIn extends PureComponent {
                                     type="submit"
                                     variant="raised"
                                     disabled={this.state.isLoading}>
-                                {this.state.isLoading ? <CircularProgress size={24}/> : 'Submit'}
+                                {this.state.isLoading ? <CircularProgress size={24}/> : 'Login'}
                             </Button>
                             <Notification/>
                         </form>
