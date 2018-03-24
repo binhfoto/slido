@@ -14,19 +14,28 @@ import {signIn} from "../action";
 
 class SignIn extends PureComponent {
 
-    formSubmit (evt) {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: this.props.isLoading
+        };
+        this.usernameInput = {};
+        this.passwordInput = {};
+    }
+
+    formSubmit(evt) {
         evt.preventDefault();
-        if ((!this.usernameInput || !this.passwordInput) || !this.usernameInput.value || !this.passwordInput.value) return;
         this.props.onSubmit(this.usernameInput.value, this.passwordInput.value);
     }
 
-    componentWillReceiveProps ({isSignedIn = false}) {
+    componentWillReceiveProps({isLoading, isSignedIn = false}) {
         if (isSignedIn) {
             this.props.history.push('/');
         }
+        this.setState({isLoading});
     }
 
-    render () {
+    render() {
         return (
             <div className="sign-in">
                 <Card>
@@ -35,9 +44,9 @@ class SignIn extends PureComponent {
                         <form className="form" noValidate autoComplete="off" onSubmit={this.formSubmit.bind(this)}>
                             <TextField
                                 id="username"
-                                label="user name"
+                                label="username"
                                 margin="normal"
-                                disabled={this.props.isLoading}
+                                disabled={this.state.isLoading}
                                 inputRef={field => {
                                     this.usernameInput = field;
                                 }}
@@ -47,7 +56,7 @@ class SignIn extends PureComponent {
                                 label="password"
                                 type="password"
                                 margin="normal"
-                                disabled={this.props.isLoading}
+                                disabled={this.state.isLoading}
                                 inputRef={field => {
                                     this.passwordInput = field;
                                 }}
@@ -57,8 +66,8 @@ class SignIn extends PureComponent {
                                     className="submit"
                                     type="submit"
                                     variant="raised"
-                                    disabled={this.props.isLoading}>
-                                {this.props.isLoading ? <CircularProgress size={24}/> : 'Submit'}
+                                    disabled={this.state.isLoading}>
+                                {this.state.isLoading ? <CircularProgress size={24}/> : 'Submit'}
                             </Button>
                             <Notification/>
                         </form>

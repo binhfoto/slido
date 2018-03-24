@@ -1,24 +1,24 @@
 [
     {
-        "code": "rfh78e",
+        "code": "123456",
         "name": "react workshop",
         "from": "2018-02-08 09:30",
         "to":   "2018-02-09 16:30"
     },
     {
-        "code": "456dfc",
+        "code": "456123",
         "name": "react basic",
         "from": "2018-03-08 09:30",
         "to":   "2018-03-09 16:30"
     },
     {
-        "code": "234tih",
+        "code": "abc123",
         "name": "vue.js",
         "from": "2018-04-08 09:30",
         "to":   "2018-04-09 16:30"
     },
     {
-        "code": "45f6hy",
+        "code": "123abc",
         "name": "graph-ql hand-on",
         "from": "2018-05-08 09:30",
         "to":   "2018-05-09 16:30"

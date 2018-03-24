@@ -8,7 +8,7 @@ module.exports = {
             .then(
                 event => {
                     if(!event){
-                        next(new Error('No event with ' + code));
+                        next(new Error(`No event with code '${code}'`));
                     }
                     else {
                         req.event = event;
@@ -22,10 +22,12 @@ module.exports = {
         Model
             .find({})
             .exec()
-            .then(res.json.bind(res), next);
+            .then(events => {
+                res.json({events});
+            }, next);
     },
     getOne: (req, res) => {
-        res.json(req.event);
+        res.json({event: req.event});
     },
     post: (req, res, next) => {
         Model

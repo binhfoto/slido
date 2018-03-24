@@ -10,12 +10,18 @@ const withAuthHeader = (token) => {
 
 const Api = {
     signIn: (username, password) => {
-
-        let signInEndpoint = getEndPoint('/auth/signin');
-
+        const endpoint = getEndPoint('/auth/signin');
         return axios
-            .post(signInEndpoint, { username, password })
+            .post(endpoint, { username, password })
             .then(response => ({ token: response.data.token }))
+            .catch(response => ({ error: response.response.data }));
+    },
+
+    fetchEventByCode: (code) => {
+        const endpoint = getEndPoint(`/api/events/${code}`);
+        return axios
+            .get(endpoint)
+            .then(response => ({ event: response.data.event }))
             .catch(response => ({ error: response.response.data }));
     }
 };
