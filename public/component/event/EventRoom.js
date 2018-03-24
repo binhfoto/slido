@@ -1,5 +1,10 @@
 import React from 'react';
+import EventDetail from './EventDetail';
 
-const EventRoom = () => <span>Event Room</span>;
+const EventRoom = () => (
+    <div>
+        <EventDetail/>
+    </div>
+);
 
 export default EventRoom;

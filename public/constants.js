@@ -1,3 +1,6 @@
+// date time format
+export const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm';
+
 // route
 export const HOME_ROUTE = '/';
 export const SIGN_IN_ROUTE = '/signin';
