@@ -23,35 +23,40 @@ module.exports = {
         Model
             .find({})
             .exec()
-            .then(res.json.bind(res), next);
+            .then(questions => {
+                res.json({questions});
+            }, next);
     },
     post: (req, res, next) => {
         Model
         // 'create' event will trigger some mongoose middleware, such as preSave
             .create(req.body)
-            .then(res.json.bind(res), next);
+            .then(question => {
+                res.json({question});
+            }, next);
     },
     put: (req, res, next) => {
-        let currentQuestion = req.question;
         const newQuestion = req.body;
+        let currentQuestion = req.question;
+
 
         merge(currentQuestion, newQuestion);
 
-        currentQuestion.save((err, item) => {
+        currentQuestion.save((err, question) => {
             if (err) {
                 next(err);
             } else {
-                res.json(item);
+                res.json({question});
             }
         });
     },
     delete: (req, res, next) => {
         const question = req.question;
-        question.remove((err, item) => {
+        question.remove((err, question) => {
             if (err) {
                 next(err);
             } else {
-                res.json(item);
+                res.json({question});
             }
         });
     }

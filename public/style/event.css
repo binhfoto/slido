@@ -1,0 +1,19 @@
+.event-detail, .event-create {
+    position: absolute;
+    top: 93px;
+    left: 0;
+    min-width: 200px;
+    max-width: 400px;
+}
+
+.event-create .column-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.event-create .add-button {
+    margin-right: 0px;
+    margin-left: auto;
+}

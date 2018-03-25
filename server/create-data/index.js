@@ -6,7 +6,8 @@ const question = require('./question');
 
 const MODELS = [user.model, event.model, question.model];
 
-const cleanDB = function(){
+const cleanDB = function() {
+    logger.log('Mongo - Cleaning up DB');
     const cleanPromises = MODELS.map(function(model){
         return model.remove().exec();
     });
@@ -18,4 +19,4 @@ cleanDB() // pass data to next function
     .then(event.create)
     .then(question.create)
     // log fake data to console
-    .then(logger.log.bind(logger))
+    //.then(logger.log.bind(logger))

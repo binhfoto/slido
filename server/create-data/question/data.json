@@ -3,18 +3,21 @@
         "eventId": "",
         "question": "Hello World",
         "isHighlight": false,
-        "author": "Anonymous"
+        "author": "Anonymous",
+        "vote": "10"
     },
     {
         "eventId": "",
         "question": "Be creative",
         "isHighlight": false,
-        "author": "Anonymous"
+        "author": "Anonymous",
+        "vote": "2"
     },
     {
         "eventId": "",
         "question": "Can any one help?",
         "isHighlight": true,
-        "author": "Anonymous"
+        "author": "Anonymous",
+        "vote": "4"
     }
 ]
