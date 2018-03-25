@@ -12,13 +12,6 @@ import {EVENT_ROOM_ROUTE} from '../../constants';
 
 class EventCodeInput extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: this.props.isLoading
-        };
-    }
-
     handleFormSubmit(evt) {
         evt.preventDefault();
         this.eventCodeInput.value && this.props.onSubmit(this.eventCodeInput.value);
@@ -28,7 +21,6 @@ class EventCodeInput extends Component {
         if(!_.isEmpty(event)) {
             this.props.history.push(EVENT_ROOM_ROUTE(event.code));
         }
-        this.setState({isLoading});
     }
 
     render() {
@@ -43,11 +35,11 @@ class EventCodeInput extends Component {
                                 placeholder="#"
                                 className="input"
                                 defaultValue="demo-event"
-                                autoFocus={true}
-                                disabled={this.state.isLoading}
+                                autoFocus
+                                disabled={this.props.isLoading}
                                 inputRef={field => {this.eventCodeInput = field}}
                             />
-                            <IconButton aria-label="Go" type="submit" disabled={this.state.isLoading}>
+                            <IconButton aria-label="Go" type="submit" disabled={this.props.isLoading}>
                                 <EnterIcon />
                             </IconButton>
                         </form>

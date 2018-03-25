@@ -14,23 +14,15 @@ import {signIn} from "../action";
 
 class SignIn extends PureComponent {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: this.props.isLoading
-        };
-    }
-
     handleFormSubmit(evt) {
         evt.preventDefault();
         this.props.onSubmit(this.usernameInput.value, this.passwordInput.value);
     }
 
-    componentWillReceiveProps({isLoading, isSignedIn = false}) {
+    componentWillReceiveProps({isSignedIn = false}) {
         if (isSignedIn) {
             this.props.history.push('/');
         }
-        this.setState({isLoading});
     }
 
     render() {
@@ -44,8 +36,9 @@ class SignIn extends PureComponent {
                                 id="username"
                                 label="username"
                                 margin="normal"
-                                disabled={this.state.isLoading}
-                                autoFocus={true}
+                                disabled={this.props.isLoading}
+                                autoFocus
+                                placeholder="admin"
                                 inputRef={field => {this.usernameInput = field }}
                             />
                             <TextField
@@ -53,7 +46,8 @@ class SignIn extends PureComponent {
                                 label="password"
                                 type="password"
                                 margin="normal"
-                                disabled={this.state.isLoading}
+                                placeholder="changeit"
+                                disabled={this.props.isLoading}
                                 inputRef={field => { this.passwordInput = field }}
                             />
                             <Button size="small"
@@ -61,7 +55,7 @@ class SignIn extends PureComponent {
                                     className="submit"
                                     type="submit"
                                     variant="raised"
-                                    disabled={this.state.isLoading}>
+                                    disabled={this.props.isLoading}>
                                 Login
                             </Button>
                         </form>

@@ -36,7 +36,9 @@ const isLoading = (state = false, {type}) => {
 
 const notificationMessage = (state = null, {type, error}) => {
     if (type === POST_QUESTION_SUCCESS) {
-        return 'Question posted successfully'
+        return 'Question posted successfully';
+    } else if (type === CREATE_EVENT_SUCCESS) {
+        return 'Event created successfully';
     } else if (type.endsWith('_FAIL')) {
         return error.message || error
     }

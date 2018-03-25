@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {createEvent} from '../../action';
-import Card, {CardHeader, CardContent, CardActions} from 'material-ui/Card';
-import Button from 'material-ui/Button';
+import moment from 'moment';
+import {createEvent, createEventFail} from '../../action';
+import Card, {CardContent, CardActions} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui-icons/Add';
 import Typography from 'material-ui/Typography';
@@ -25,6 +25,10 @@ class EventCreate extends PureComponent {
         if (name && code && from && to) {
             this.props.createEvent({name, code, from, to});
             this.resetInput();
+        } else {
+            this.props.createEventFail({
+                message: 'Event must has Name, Code, Start/End Date'
+            });
         }
     }
 
@@ -39,12 +43,14 @@ class EventCreate extends PureComponent {
                         <TextField
                             id="name"
                             label="Name"
-                            autoFocus={true}
+                            autoFocus
+                            required
                             inputRef={field => {this.nameInput = field}}
                         />
                         <TextField
                             id="code"
                             label="Code"
+                            required
                             inputRef={field => {this.codeInput = field}}
                         />
                         <br/>
@@ -52,18 +58,22 @@ class EventCreate extends PureComponent {
                             id="from"
                             label="Start Event"
                             type="datetime-local"
+                            required
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            defaultValue={`${moment().format('YYYY-MM-DDTHH:mm')}`}
                             inputRef={field => {this.fromInput = field}}
                         />
                         <TextField
                             id="to"
                             label="End Event"
                             type="datetime-local"
+                            required
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                            defaultValue={`${moment().add(1, 'days').format('YYYY-MM-DDTHH:mm')}`}
                             inputRef={field => {this.toInput = field}}
                         />
                     </CardContent>
@@ -80,5 +90,5 @@ class EventCreate extends PureComponent {
 
 export default connect(
     ({isLoading}) => ({isLoading}),
-    {createEvent}
+    {createEvent, createEventFail}
 )(EventCreate);
