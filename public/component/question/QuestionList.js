@@ -7,6 +7,7 @@ import QuestionItem from './QuestionItem';
 
 const QuestionList = ({questions, isSignedIn}) => {
     return (
+        questions.length > 0 &&
         <div className="question-list">
             <List>
                 {

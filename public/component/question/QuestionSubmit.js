@@ -10,6 +10,9 @@ class QuestionSubmit extends PureComponent {
 
     constructor(props) {
         super(props);
+        this.state = {
+            isLoading: props.isLoading
+        }
     }
 
     onPostQuestion () {
@@ -21,6 +24,10 @@ class QuestionSubmit extends PureComponent {
         }
     }
 
+    componentWillReceiveProps({isLoading}) {
+        this.setState({isLoading});
+    }
+
     render() {
         return (
             <Card className="question-submit">
@@ -29,6 +36,8 @@ class QuestionSubmit extends PureComponent {
                         id="question"
                         label="ask question"
                         fullWidth={true}
+                        autoFocus={true}
+                        disabled={this.state.isLoading}
                         inputRef={field => this.questionInput = field}
                     />
                     <br/>
@@ -37,11 +46,12 @@ class QuestionSubmit extends PureComponent {
                         label="author (optional)"
                         defaultValue={this.props.isSignedIn ? 'admin' : ''}
                         fullWidth={true}
+                        disabled={this.state.isLoading}
                         inputRef={field => this.authorInput = field}
                     />
                 </CardContent>
                 <CardActions>
-                    <Button variant="raised" color="primary" className="question-action" onClick={this.onPostQuestion.bind(this)}>
+                    <Button variant="raised" color="primary" className="question-action" onClick={this.onPostQuestion.bind(this)} disabled={this.state.isLoading}>
                         Post
                     </Button>
                 </CardActions>

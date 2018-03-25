@@ -15,13 +15,12 @@ class EventCodeInput extends Component {
 
     constructor(props) {
         super(props);
-        this.eventCodeInput = {};
         this.state = {
             isLoading: this.props.isLoading
         };
     }
 
-    formSubmit(evt) {
+    handleFormSubmit(evt) {
         evt.preventDefault();
         this.eventCodeInput.value && this.props.onSubmit(this.eventCodeInput.value);
     }
@@ -38,18 +37,19 @@ class EventCodeInput extends Component {
             <div className="eventCodeInput">
                 <Card>
                     <CardContent>
-                        <form noValidate autoComplete="off" onSubmit={this.formSubmit.bind(this)}>
+                        <form noValidate autoComplete="off" onSubmit={this.handleFormSubmit.bind(this)}>
                             <TextField
                                 id="eventCode"
                                 label="event code"
                                 placeholder="#"
-                                margin="normal"
                                 className="input"
                                 defaultValue="456123"
-                                inputRef={field => {this.eventCodeInput = field;}}
+                                autoFocus={true}
+                                disabled={this.state.isLoading}
+                                inputRef={field => {this.eventCodeInput = field}}
                             />
-                            <IconButton aria-label="Go" type="submit">
-                                {this.state.isLoading ? <CircularProgress size={24}/> : <EnterIcon />}
+                            <IconButton aria-label="Go" type="submit" disabled={this.state.isLoading}>
+                                <EnterIcon />
                             </IconButton>
                         </form>
                     </CardContent>

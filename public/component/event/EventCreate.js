@@ -39,6 +39,7 @@ class EventCreate extends PureComponent {
                         <TextField
                             id="name"
                             label="Name"
+                            autoFocus={true}
                             inputRef={field => {this.nameInput = field}}
                         />
                         <TextField
@@ -50,7 +51,7 @@ class EventCreate extends PureComponent {
                         <TextField
                             id="from"
                             label="Start Event"
-                            type="datetime-local"
+                            type="date"
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -59,7 +60,7 @@ class EventCreate extends PureComponent {
                         <TextField
                             id="to"
                             label="End Event"
-                            type="datetime-local"
+                            type="date"
                             InputLabelProps={{
                                 shrink: true,
                             }}

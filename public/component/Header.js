@@ -5,6 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import { LinearProgress } from 'material-ui/Progress';
 
 import {
     HOME_ROUTE,
@@ -19,7 +20,7 @@ import {
 
 import Token from '../service/token';
 
-const Header = ({isSignedIn = false, title = 'Sli.do', onSignOut, resetEvent, location: {pathname}, history}) => {
+const Header = ({isSignedIn = false, title = 'Sli.do', onSignOut, resetEvent, isLoading, location: {pathname}, history}) => {
 
     let logIn, logOut, events;
 
@@ -54,13 +55,14 @@ const Header = ({isSignedIn = false, title = 'Sli.do', onSignOut, resetEvent, lo
                     {logOut}
                 </Toolbar>
             </AppBar>
+            {isLoading ? <LinearProgress color="secondary"/> : <div className="empty-progress-bar"/>}
         </div>
     );
 };
 
 export default withRouter(
     connect(
-        ({isSignedIn}) => ({isSignedIn}),
+        ({isSignedIn, isLoading}) => ({isSignedIn, isLoading}),
         {onSignOut: signOut, resetEvent}
     )(Header)
 );
