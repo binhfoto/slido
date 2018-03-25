@@ -4,7 +4,8 @@ import Api from "../service/api";
 import {
     POST_QUESTION_REQUEST,
     HIGHLIGHT_QUESTION_REQUEST,
-    DELETE_QUESTION_REQUEST
+    DELETE_QUESTION_REQUEST,
+    EDIT_QUESTION_REQUEST
 } from '../constants';
 
 import {
@@ -13,7 +14,9 @@ import {
     highlightQuestionSuccess,
     highlightQuestionFail,
     deleteQuestionSuccess,
-    deleteQuestionFail
+    deleteQuestionFail,
+    editQuestionSuccess,
+    editQuestionFail
 } from '../action';
 
 /******************************** POST QUESTION SAGA ********************************/
@@ -26,13 +29,13 @@ function * watchPostQuestion (action) {
     }
 }
 
-const postQuestion = function * () {
+function * postQuestion () {
     yield takeEvery(POST_QUESTION_REQUEST, watchPostQuestion);
 };
 
 /******************************** HIGHLIGHT QUESTION SAGA ********************************/
 function * watchHighlightQuestion (action) {
-    const {question, error} = yield call(Api.highlightQuestion, action.question);
+    const {question, error} = yield call(Api.updateQuestion, action.question);
     if (question) {
         yield put(highlightQuestionSuccess(question));
     } else {
@@ -40,7 +43,7 @@ function * watchHighlightQuestion (action) {
     }
 }
 
-const highlightQuestion = function *  () {
+function * highlightQuestion () {
     yield takeEvery(HIGHLIGHT_QUESTION_REQUEST, watchHighlightQuestion);
 };
 
@@ -54,12 +57,27 @@ function * watchDeleteQuestion (action) {
     }
 }
 
-const deleteQuestion = function *  () {
+function * deleteQuestion () {
     yield takeEvery(DELETE_QUESTION_REQUEST, watchDeleteQuestion);
 };
+
+/******************************** EDIT QUESTION SAGA ********************************/
+function * watchEditQuestion (action) {
+    const {question, error} = yield call(Api.updateQuestion, action.question);
+    if (question) {
+        yield put(editQuestionSuccess(question));
+    } else {
+        yield put(editQuestionFail(error));
+    }
+}
+
+function * editQuestion () {
+    yield takeEvery(EDIT_QUESTION_REQUEST, watchEditQuestion);
+}
 
 export default {
     postQuestion,
     highlightQuestion,
-    deleteQuestion
+    deleteQuestion,
+    editQuestion
 }

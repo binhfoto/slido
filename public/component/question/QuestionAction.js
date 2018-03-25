@@ -6,7 +6,8 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 import {
     highlightQuestion,
     highlightQuestionFail,
-    deleteQuestion
+    deleteQuestion,
+    editQuestion
 } from '../../action';
 
 import QuestionEdit from './QuestionEdit';
@@ -17,6 +18,7 @@ class QuestionAction extends PureComponent {
         super(props);
         this.state = {
             anchorEl: null,
+            openEditDialog: false
         };
     }
 
@@ -45,13 +47,22 @@ class QuestionAction extends PureComponent {
         }
     }
 
+    handleEdit() {
+        this.setState({openEditDialog: true});
+    }
+
+    handleCloseDialog() {
+        this.setState({openEditDialog: false});
+        this.handleCloseMenu();
+    }
+
     handleDelete() {
         this.handleCloseMenu();
         this.props.deleteQuestion(this.props.question);
     }
 
     render() {
-        const { anchorEl } = this.state;
+        const { anchorEl, openEditDialog } = this.state;
         return (
             <div>
                 <IconButton
@@ -69,14 +80,20 @@ class QuestionAction extends PureComponent {
                     onClose={this.handleCloseMenu.bind(this)}
                     PaperProps={{
                         style: {
-                            maxHeight: 48 * 3.5,
+                            maxHeight: 48 * 4.5,
                             width: 100,
                         },
                     }}
                 >
                     <MenuItem onClick={this.handleHighlight.bind(this)}>{this.props.question.isHighlight ? 'Unhighlight' : 'Highlight'}</MenuItem>
-                    <QuestionEdit handleCloseMenu={this.handleCloseMenu.bind(this)}/>
+                    <MenuItem onClick={this.handleEdit.bind(this)}>Edit</MenuItem>
                     <MenuItem onClick={this.handleDelete.bind(this)}>Delete</MenuItem>
+                    <QuestionEdit
+                        openEditDialog={openEditDialog}
+                        handleCloseDialog={this.handleCloseDialog.bind(this)}
+                        question={this.props.question}
+                        editQuestion={this.props.editQuestion}
+                    />
                 </Menu>
             </div>
         );
@@ -85,5 +102,5 @@ class QuestionAction extends PureComponent {
 
 export default connect(
     ({event}, {question}) => ({event, question}),
-    {highlightQuestion, highlightQuestionFail, deleteQuestion}
+    {highlightQuestion, highlightQuestionFail, deleteQuestion, editQuestion}
 )(QuestionAction);

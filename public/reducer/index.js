@@ -22,6 +22,8 @@ import {
     HIGHLIGHT_QUESTION_FAIL,
     DELETE_QUESTION_SUCCESS,
     DELETE_QUESTION_FAIL,
+    EDIT_QUESTION_SUCCESS,
+    EDIT_QUESTION_FAIL
 } from '../constants';
 
 
@@ -88,11 +90,13 @@ const event = (state = null, {type, event}) => {
         case FETCH_EVENT_FAIL:
         case RESET_EVENT:
             return null;
+        case EDIT_QUESTION_SUCCESS:
         case HIGHLIGHT_QUESTION_SUCCESS: {
             const newQuestion = event.newQuestion;
             state.questions = state.questions.map(question => {
                 if (question._id === newQuestion._id) {
-                    question.isHighlight = newQuestion.isHighlight;
+                    //question.isHighlight = newQuestion.isHighlight;
+                    return newQuestion
                 }
                 return question;
             });

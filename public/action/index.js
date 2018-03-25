@@ -22,7 +22,10 @@ import {
     HIGHLIGHT_QUESTION_FAIL,
     DELETE_QUESTION_REQUEST,
     DELETE_QUESTION_SUCCESS,
-    DELETE_QUESTION_FAIL
+    DELETE_QUESTION_FAIL,
+    EDIT_QUESTION_REQUEST,
+    EDIT_QUESTION_SUCCESS,
+    EDIT_QUESTION_FAIL
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -81,3 +84,7 @@ export const highlightQuestionFail = (error) => ({type: HIGHLIGHT_QUESTION_FAIL,
 export const deleteQuestion = (question) => ({type: DELETE_QUESTION_REQUEST, question});
 export const deleteQuestionSuccess = (deletedQuestion) => ({type: DELETE_QUESTION_SUCCESS, event: {deletedQuestion}});
 export const deleteQuestionFail = (error) => ({type: DELETE_QUESTION_FAIL, error});
+
+export const editQuestion = (question) => ({type: EDIT_QUESTION_REQUEST, question});
+export const editQuestionSuccess = (newQuestion) => ({type: EDIT_QUESTION_SUCCESS, event: {newQuestion}});
+export const editQuestionFail = (error) => ({type: EDIT_QUESTION_FAIL, error});

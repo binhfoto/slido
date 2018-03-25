@@ -28,7 +28,7 @@ function * watchFetchEvent({code}) {
     }
 }
 
-const fetchEventByCode = function * () {
+function * fetchEventByCode () {
     yield takeEvery(FETCH_EVENT_REQUEST, watchFetchEvent)
 };
 
@@ -42,7 +42,7 @@ function * watchFetchEvents ({}) {
     }
 }
 
-const fetchEvents = function * () {
+function * fetchEvents () {
     yield takeEvery(FETCH_EVENTS_REQUEST, watchFetchEvents);
 };
 

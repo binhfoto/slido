@@ -13,6 +13,7 @@ export default function* () {
         EventSaga.createEvent(),
         QuestionSaga.postQuestion(),
         QuestionSaga.highlightQuestion(),
-        QuestionSaga.deleteQuestion()
+        QuestionSaga.deleteQuestion(),
+        QuestionSaga.editQuestion()
     ]);
 };

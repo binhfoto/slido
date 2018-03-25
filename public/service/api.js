@@ -55,7 +55,7 @@ const Api = {
             .catch(response => ({ error: response.response.data }));
     },
 
-    highlightQuestion: (question) => {
+    updateQuestion: (question) => {
         const endpoint = getEndPoint(`/api/questions/${question._id}`);
         return axios
             .put(endpoint, question, {

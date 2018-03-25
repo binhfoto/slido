@@ -23,7 +23,7 @@ function * watchSignInRequest ({username, password}) {
     }
 }
 
-const signIn = function * () {
+function * signIn () {
     yield takeEvery(SIGNIN_REQUEST, watchSignInRequest);
 };
 

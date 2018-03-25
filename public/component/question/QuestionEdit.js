@@ -1,61 +1,49 @@
 import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import { MenuItem } from 'material-ui/Menu';
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
 } from 'material-ui/Dialog';
 
 class QuestionEdit extends PureComponent {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: false
-        };
+    handleUpdateQuestion() {
+        this.props.editQuestion({
+            _id: this.props.question._id,
+            question: this.questionInput.value
+        });
+        this.props.handleCloseDialog();
     }
-
-    handleEdit() {
-        this.handleDialogOpen();
-
-    }
-
-    handleDialogOpen() {
-        this.setState({ open: true });
-    };
-
-    handleClose() {
-        this.props.handleCloseMenu();
-        this.setState({ open: false });
-    };
 
     render() {
         return (
-            <div className="question-edit">
-                <MenuItem onClick={this.handleEdit.bind(this)}>Edit</MenuItem>
+            <div>
                 <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
+                    open={this.props.openEditDialog}
+                    onClose={this.props.handleCloseDialog}
                     aria-labelledby="form-dialog-title"
+                    className="question-edit"
+                    fullWidth
                 >
                     <DialogTitle id="form-dialog-title">Edit question</DialogTitle>
                     <DialogContent>
                         <TextField
-                            autoFocus
                             id="question"
                             label="Question"
+                            margin="dense"
                             fullWidth
+                            autoFocus
+                            defaultValue={this.props.question.question}
+                            inputRef={field => {this.questionInput = field}}
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose.bind(this)} color="primary">
+                        <Button onClick={this.props.handleCloseDialog} variant="raised" color="default">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleClose.bind(this)} color="primary">
+                        <Button onClick={this.handleUpdateQuestion.bind(this)} variant="raised" color="primary">
                             Save
                         </Button>
                     </DialogActions>
