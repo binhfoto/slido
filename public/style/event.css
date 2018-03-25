@@ -13,6 +13,7 @@
     justify-content: space-between;
 }
 
-.event-create .row-layout .row-item {
-
+.event-create .add-button {
+    margin-right: 0px;
+    margin-left: auto;
 }

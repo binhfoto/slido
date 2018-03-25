@@ -5,7 +5,8 @@ import {
     FETCH_EVENT_REQUEST,
     FETCH_EVENTS_REQUEST,
     CREATE_EVENT_REQUEST,
-    POST_QUESTION_REQUEST
+    POST_QUESTION_REQUEST,
+    HIGHLIGHT_QUESTION_REQUEST
 } from '../constants';
 
 import {
@@ -18,7 +19,9 @@ import {
     createEventSuccess,
     createEventFail,
     postQuestionSuccess,
-    postQuestionFail
+    postQuestionFail,
+    highlightQuestionSuccess,
+    highlightQuestionFail
 } from '../action';
 
 import Api from '../service/api';
@@ -95,6 +98,21 @@ function * postQuestion () {
     yield takeEvery(POST_QUESTION_REQUEST, watchPostQuestion);
 }
 
+/********************************UPDATE QUESTION SAGA********************************/
+function * watchHighlightQuestion (action) {
+    const {question, error} = yield call(Api.updateQuestion, action.question);
+    if (question) {
+        yield put(highlightQuestionSuccess(question));
+    } else {
+        yield put(highlightQuestionFail(error));
+    }
+}
+
+function * highlightQuestion () {
+    yield takeEvery(HIGHLIGHT_QUESTION_REQUEST, watchHighlightQuestion);
+}
+
+
 /********************************ROOT SAGA********************************/
 export default function * () {
     yield all([
@@ -102,6 +120,7 @@ export default function * () {
         fetchEventByCode(),
         fetchEvents(),
         createEvent(),
-        postQuestion()
+        postQuestion(),
+        highlightQuestion()
     ]);
 };

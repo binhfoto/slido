@@ -5,14 +5,14 @@ import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import QuestionItem from './QuestionItem';
 
-const QuestionList = ({questions}) => {
+const QuestionList = ({questions, isSignedIn}) => {
     return (
         <div className="question-list">
             <List>
                 {
                     questions.map((question, index) => (
                         <div key={question._id}>
-                            <QuestionItem question={question}/>
+                            <QuestionItem question={question} isSignedIn={isSignedIn}/>
                             {index + 1 < questions.length && <Divider/>}
                         </div>
                     ))
@@ -23,5 +23,5 @@ const QuestionList = ({questions}) => {
 };
 
 export default connect(
-    ({event: {questions}}) => ({questions})
+    ({event: {questions}, isSignedIn}) => ({questions, isSignedIn})
 )(QuestionList);

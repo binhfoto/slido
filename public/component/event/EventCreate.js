@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {createEvent} from '../../action';
 import Card, {CardHeader, CardContent, CardActions} from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui-icons/Add';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
@@ -66,9 +67,9 @@ class EventCreate extends PureComponent {
                         />
                     </CardContent>
                     <CardActions>
-                        <Button variant="fab" mini aria-label="add" color="primary" onClick={this.onCreateEvent.bind(this)}>
+                        <IconButton className="add-button" variant="fab" aria-label="add" color="primary" onClick={this.onCreateEvent.bind(this)}>
                             <AddIcon />
-                        </Button>
+                        </IconButton>
                     </CardActions>
                 </Card>
             </div>

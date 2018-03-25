@@ -17,11 +17,13 @@ import {
     CREATE_EVENT_SUCCESS,
     CREATE_EVENT_FAIL,
     POST_QUESTION_SUCCESS,
-    POST_QUESTION_FAIL
+    POST_QUESTION_FAIL,
+    HIGHLIGHT_QUESTION_SUCCESS,
+    HIGHLIGHT_QUESTION_FAIL
 } from '../constants';
 
 
-const isSignedIn = (state = true, {type}) => {
+const isSignedIn = (state = false, {type}) => {
     switch (type) {
         case SIGNIN_SUCCESS:
             return true;
@@ -58,9 +60,9 @@ const isLoading = (state = false, {type}) => {
 };
 
 const errorMessage = (state = null, {type, error}) => {
-    if (type == POST_QUESTION_SUCCESS) {
-        return 'Post question successfully'
-    }else if (type.endsWith('_FAIL')) {
+    if (type === POST_QUESTION_SUCCESS) {
+        return 'Question posted successfully'
+    } else if (type.endsWith('_FAIL')) {
         return error.message || error
     }
     return null; // RESET_ERROR_MESSAGE returns null
@@ -84,6 +86,16 @@ const event = (state = null, {type, event}) => {
         case FETCH_EVENT_FAIL:
         case RESET_EVENT:
             return null;
+        case HIGHLIGHT_QUESTION_SUCCESS: {
+            const newQuestion = event.newQuestion;
+            state.questions = state.questions.map(question => {
+                if (question._id === newQuestion._id) {
+                    question.isHighlight = newQuestion.isHighlight;
+                }
+                return question;
+            });
+            return state;
+        }
         case POST_QUESTION_SUCCESS: {
             state.questions = state.questions.concat(event.newQuestion);
             return state;

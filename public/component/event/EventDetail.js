@@ -4,7 +4,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Card, {CardContent, CardActions, CardHeader} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
-import Button from 'material-ui/Button';
 import DeleteIcon from 'material-ui-icons/Clear';
 import Typography from 'material-ui/Typography';
 import {
@@ -44,11 +43,3 @@ const EventDetail = ({event, isSignedIn}) => {
 export default connect(
     ({event, isSignedIn}) => ({event, isSignedIn})
 )(EventDetail);
-
-
-/*<Typography gutterBottom variant="subheading">
-                        {event.name}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        {`#${event.code}`}
-                    </Typography>*/

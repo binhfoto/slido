@@ -53,6 +53,16 @@ const Api = {
             })
             .then(response => ({ question: response.data.question }))
             .catch(response => ({ error: response.response.data }));
+    },
+
+    updateQuestion: (question) => {
+        const endpoint = getEndPoint(`/api/questions/${question._id}`);
+        return axios
+            .put(endpoint, question, {
+                headers: withAuthHeader(Token.get())
+            })
+            .then(response => ({ question: response.data.question }))
+            .catch(response => ({ error: response.response.data }));
     }
 };
 

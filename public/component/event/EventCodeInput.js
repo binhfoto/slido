@@ -45,6 +45,7 @@ class EventCodeInput extends Component {
                                 placeholder="#"
                                 margin="normal"
                                 className="input"
+                                defaultValue="456123"
                                 inputRef={field => {this.eventCodeInput = field;}}
                             />
                             <IconButton aria-label="Go" type="submit">

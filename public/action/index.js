@@ -16,7 +16,10 @@ import {
     CREATE_EVENT_FAIL,
     POST_QUESTION_REQUEST,
     POST_QUESTION_SUCCESS,
-    POST_QUESTION_FAIL
+    POST_QUESTION_FAIL,
+    HIGHLIGHT_QUESTION_REQUEST,
+    HIGHLIGHT_QUESTION_SUCCESS,
+    HIGHLIGHT_QUESTION_FAIL
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -67,3 +70,7 @@ export const fetchEventsFail = (error) => ({type: FETCH_EVENTS_FAIL, error});
 export const postQuestion = (question) => ({type: POST_QUESTION_REQUEST, question});
 export const postQuestionSuccess = (newQuestion) => ({type: POST_QUESTION_SUCCESS, event: {newQuestion}});
 export const postQuestionFail = (error) => ({type: POST_QUESTION_FAIL, error});
+
+export const highlightQuestion = (question) => ({type: HIGHLIGHT_QUESTION_REQUEST, question});
+export const highlightQuestionSuccess = (newQuestion) => ({type: HIGHLIGHT_QUESTION_SUCCESS, event: {newQuestion}});
+export const highlightQuestionFail = (error) => ({type: HIGHLIGHT_QUESTION_FAIL, error});
