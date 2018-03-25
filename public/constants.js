@@ -1,5 +1,5 @@
 // date time format
-export const DATE_TIME_FORMAT = 'MM/DD/YYYY HH:mm';
+export const DATE_TIME_FORMAT = 'MM/DD/YYYY, hh:mm A';
 
 // route
 export const HOME_ROUTE = '/';
