@@ -8,7 +8,6 @@ const QuestionPanel = () => (
     <div className="question-panel">
         <QuestionSubmit/>
         <QuestionList/>
-        <Notification/>
     </div>
 );
 

@@ -16,7 +16,7 @@ import rootReducer from '../reducer';
 import Token from '../service/token';
 import Header from './Header';
 import Content from './Content';
-
+import Notification from './Notification';
 
 const App = () => {
 
@@ -45,6 +45,7 @@ const App = () => {
                     <div className="container">
                         <Header/>
                         <Content/>
+                        <Notification/>
                     </div>
                 </HashRouter>
             </MuiThemeProvider>

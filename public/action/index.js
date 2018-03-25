@@ -2,7 +2,7 @@ import {
     SIGNIN_FAIL,
     SIGNIN_REQUEST,
     SIGNIN_SUCCESS,
-    RESET_ERROR_MESSAGE,
+    RESET_NOTIFICATION_MESSAGE,
     SIGNOUT,
     FETCH_EVENT_REQUEST,
     FETCH_EVENT_SUCCESS,
@@ -41,7 +41,7 @@ export const signInFail = (error) => ({
     error
 });
 
-export const resetErrorMessage = () => ({type: RESET_ERROR_MESSAGE});
+export const resetNotificationMessage = () => ({type: RESET_NOTIFICATION_MESSAGE});
 
 export const signOut = () => ({type: SIGNOUT});
 

@@ -53,7 +53,6 @@ class EventCodeInput extends Component {
                         </form>
                     </CardContent>
                 </Card>
-                <Notification/>
             </div>
         )
     }

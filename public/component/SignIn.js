@@ -64,7 +64,6 @@ class SignIn extends PureComponent {
                                     disabled={this.state.isLoading}>
                                 Login
                             </Button>
-                            <Notification/>
                         </form>
                     </CardContent>
                 </Card>

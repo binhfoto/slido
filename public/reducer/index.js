@@ -4,7 +4,7 @@ import {
     SIGNIN_REQUEST,
     SIGNIN_SUCCESS,
     SIGNIN_FAIL,
-    RESET_ERROR_MESSAGE,
+    RESET_NOTIFICATION_MESSAGE,
     SIGNOUT,
     FETCH_EVENT_REQUEST,
     FETCH_EVENT_SUCCESS,
@@ -61,7 +61,7 @@ const isLoading = (state = false, {type}) => {
     }*/
 };
 
-const errorMessage = (state = null, {type, error}) => {
+const notificationMessage = (state = null, {type, error}) => {
     if (type === POST_QUESTION_SUCCESS) {
         return 'Question posted successfully'
     } else if (type.endsWith('_FAIL')) {
@@ -134,7 +134,7 @@ const events = (state = [], {type, events}) => {
 const rootReducer = combineReducers({
     isSignedIn,
     isLoading,
-    errorMessage,
+    notificationMessage,
     event,
     events
 });

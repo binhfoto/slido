@@ -3,7 +3,13 @@ import {connect} from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import {highlightQuestion, highlightQuestionFail, deleteQuestion} from '../../action';
+import {
+    highlightQuestion,
+    highlightQuestionFail,
+    deleteQuestion
+} from '../../action';
+
+import QuestionEdit from './QuestionEdit';
 
 class QuestionAction extends PureComponent {
 
@@ -39,10 +45,6 @@ class QuestionAction extends PureComponent {
         }
     }
 
-    handleEdit() {
-        this.handleCloseMenu();
-    }
-
     handleDelete() {
         this.handleCloseMenu();
         this.props.deleteQuestion(this.props.question);
@@ -73,7 +75,7 @@ class QuestionAction extends PureComponent {
                     }}
                 >
                     <MenuItem onClick={this.handleHighlight.bind(this)}>{this.props.question.isHighlight ? 'Unhighlight' : 'Highlight'}</MenuItem>
-                    <MenuItem onClick={this.handleEdit.bind(this)}>Edit</MenuItem>
+                    <QuestionEdit handleCloseMenu={this.handleCloseMenu.bind(this)}/>
                     <MenuItem onClick={this.handleDelete.bind(this)}>Delete</MenuItem>
                 </Menu>
             </div>

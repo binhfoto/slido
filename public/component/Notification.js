@@ -1,25 +1,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Snackbar from 'material-ui/Snackbar';
-import {resetErrorMessage} from '../action';
+import {resetNotificationMessage} from '../action';
 
-const Notification = ({errorMessage, resetErrorMessage}) => (
+const Notification = ({notificationMessage, resetNotificationMessage}) => (
     <Snackbar
         anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
         }}
-        open={errorMessage !== null}
-        onClose={resetErrorMessage}
+        open={notificationMessage !== null}
+        onClose={resetNotificationMessage}
         autoHideDuration={4000}
         SnackbarContentProps={{
             'aria-describedby': 'message-id',
         }}
-        message={<span id="message-id">{errorMessage}</span>}
+        message={<span id="message-id">{notificationMessage}</span>}
     />
 );
 
 export default connect(
-    ({errorMessage}) => ({errorMessage}),
-    {resetErrorMessage}
+    ({notificationMessage}) => ({notificationMessage}),
+    {resetNotificationMessage}
 )(Notification);
