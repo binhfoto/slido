@@ -47,7 +47,20 @@ const webpackConfig = {
             ADMIN_API_URL: JSON.stringify(config.url), // -> '"url"'
             ENABLE_REDUX_DEV_TOOL: JSON.stringify(false)
         })
-    ]
+    ],
+
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                default: false,
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
+    }
 };
 
 module.exports = webpackConfig;
