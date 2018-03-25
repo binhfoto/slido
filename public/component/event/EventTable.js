@@ -14,8 +14,8 @@ const EventTable = ({events}) => {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Name</TableCell>
                         <TableCell>Code</TableCell>
+                        <TableCell>Name</TableCell>
                         <TableCell>Start</TableCell>
                         <TableCell>End</TableCell>
                         <TableCell></TableCell>
@@ -25,8 +25,8 @@ const EventTable = ({events}) => {
                     {events.map(event => {
                         return (
                             <TableRow key={event._id}>
-                                <TableCell>{event.name}</TableCell>
                                 <TableCell>{event.code}</TableCell>
+                                <TableCell>{event.name}</TableCell>
                                 <TableCell>{moment(event.from).format(DATE_TIME_FORMAT)}</TableCell>
                                 <TableCell>{moment(event.from).format(DATE_TIME_FORMAT)}</TableCell>
                                 <TableCell>

@@ -5,7 +5,6 @@ import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import EnterIcon from 'material-ui-icons/Event';
-import {CircularProgress} from 'material-ui/Progress';
 import Card, {CardContent} from 'material-ui/Card';
 import Notification from '../Notification';
 import {fetchEventByCode} from "../../action";
@@ -43,7 +42,7 @@ class EventCodeInput extends Component {
                                 label="event code"
                                 placeholder="#"
                                 className="input"
-                                defaultValue="456123"
+                                defaultValue="demo-event"
                                 autoFocus={true}
                                 disabled={this.state.isLoading}
                                 inputRef={field => {this.eventCodeInput = field}}

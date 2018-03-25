@@ -10,21 +10,21 @@ import TextField from 'material-ui/TextField';
 
 class EventCreate extends PureComponent {
 
-    constructor(props) {
-        super(props);
-        this.nameInput = {};
-        this.codeInput = {};
-        this.fromInput = {};
-        this.toInput = {};
+    resetInput () {
+        this.nameInput.value = '';
+        this.codeInput.value = '';
+        this.fromInput.value = '';
+        this.toInput.value = '';
     }
 
-    onCreateEvent() {
+    handleCreateEvent() {
         const name = this.nameInput.value;
         const code = this.codeInput.value;
         const from = this.fromInput.value;
         const to = this.toInput.value;
         if (name && code && from && to) {
             this.props.createEvent({name, code, from, to});
+            this.resetInput();
         }
     }
 
@@ -51,7 +51,7 @@ class EventCreate extends PureComponent {
                         <TextField
                             id="from"
                             label="Start Event"
-                            type="date"
+                            type="datetime-local"
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -60,7 +60,7 @@ class EventCreate extends PureComponent {
                         <TextField
                             id="to"
                             label="End Event"
-                            type="date"
+                            type="datetime-local"
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -68,7 +68,7 @@ class EventCreate extends PureComponent {
                         />
                     </CardContent>
                     <CardActions>
-                        <IconButton className="add-button" variant="fab" aria-label="add" color="primary" onClick={this.onCreateEvent.bind(this)}>
+                        <IconButton className="add-button" variant="fab" aria-label="add" color="primary" onClick={this.handleCreateEvent.bind(this)}>
                             <AddIcon />
                         </IconButton>
                     </CardActions>
