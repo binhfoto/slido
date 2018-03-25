@@ -55,10 +55,20 @@ const Api = {
             .catch(response => ({ error: response.response.data }));
     },
 
-    updateQuestion: (question) => {
+    highlightQuestion: (question) => {
         const endpoint = getEndPoint(`/api/questions/${question._id}`);
         return axios
             .put(endpoint, question, {
+                headers: withAuthHeader(Token.get())
+            })
+            .then(response => ({ question: response.data.question }))
+            .catch(response => ({ error: response.response.data }));
+    },
+
+    deleteQuestion: (question) => {
+        const endpoint = getEndPoint(`/api/questions/${question._id}`);
+        return axios
+            .delete(endpoint, {
                 headers: withAuthHeader(Token.get())
             })
             .then(response => ({ question: response.data.question }))

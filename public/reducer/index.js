@@ -19,7 +19,9 @@ import {
     POST_QUESTION_SUCCESS,
     POST_QUESTION_FAIL,
     HIGHLIGHT_QUESTION_SUCCESS,
-    HIGHLIGHT_QUESTION_FAIL
+    HIGHLIGHT_QUESTION_FAIL,
+    DELETE_QUESTION_SUCCESS,
+    DELETE_QUESTION_FAIL,
 } from '../constants';
 
 
@@ -98,6 +100,16 @@ const event = (state = null, {type, event}) => {
         }
         case POST_QUESTION_SUCCESS: {
             state.questions = state.questions.concat(event.newQuestion);
+            return state;
+        }
+        case DELETE_QUESTION_SUCCESS: {
+            const deletedQuestion = event.deletedQuestion;
+            state.questions = state.questions.reduce((result, question) => {
+                if (question._id !== deletedQuestion._id) {
+                    result.push(question);
+                }
+                return result;
+            }, []);
             return state;
         }
         default:

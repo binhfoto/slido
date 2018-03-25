@@ -19,7 +19,10 @@ import {
     POST_QUESTION_FAIL,
     HIGHLIGHT_QUESTION_REQUEST,
     HIGHLIGHT_QUESTION_SUCCESS,
-    HIGHLIGHT_QUESTION_FAIL
+    HIGHLIGHT_QUESTION_FAIL,
+    DELETE_QUESTION_REQUEST,
+    DELETE_QUESTION_SUCCESS,
+    DELETE_QUESTION_FAIL
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -74,3 +77,7 @@ export const postQuestionFail = (error) => ({type: POST_QUESTION_FAIL, error});
 export const highlightQuestion = (question) => ({type: HIGHLIGHT_QUESTION_REQUEST, question});
 export const highlightQuestionSuccess = (newQuestion) => ({type: HIGHLIGHT_QUESTION_SUCCESS, event: {newQuestion}});
 export const highlightQuestionFail = (error) => ({type: HIGHLIGHT_QUESTION_FAIL, error});
+
+export const deleteQuestion = (question) => ({type: DELETE_QUESTION_REQUEST, question});
+export const deleteQuestionSuccess = (deletedQuestion) => ({type: DELETE_QUESTION_SUCCESS, event: {deletedQuestion}});
+export const deleteQuestionFail = (error) => ({type: DELETE_QUESTION_FAIL, error});
