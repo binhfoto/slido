@@ -1,29 +1,18 @@
 import {combineReducers} from 'redux';
 
 import {
-    SIGNIN_REQUEST,
     SIGNIN_SUCCESS,
     SIGNIN_FAIL,
-    RESET_NOTIFICATION_MESSAGE,
     SIGNOUT,
-    FETCH_EVENT_REQUEST,
     FETCH_EVENT_SUCCESS,
     FETCH_EVENT_FAIL,
     RESET_EVENT,
-    FETCH_EVENTS_REQUEST,
     FETCH_EVENTS_SUCCESS,
     FETCH_EVENTS_FAIL,
-    CREATE_EVENT_REQUEST,
     CREATE_EVENT_SUCCESS,
-    CREATE_EVENT_FAIL,
     POST_QUESTION_SUCCESS,
-    POST_QUESTION_FAIL,
-    HIGHLIGHT_QUESTION_SUCCESS,
-    HIGHLIGHT_QUESTION_FAIL,
     DELETE_QUESTION_SUCCESS,
-    DELETE_QUESTION_FAIL,
-    EDIT_QUESTION_SUCCESS,
-    EDIT_QUESTION_FAIL
+    UPDATE_QUESTION_SUCCESS
 } from '../constants';
 
 
@@ -40,27 +29,9 @@ const isSignedIn = (state = false, {type}) => {
 };
 
 const isLoading = (state = false, {type}) => {
-
     if(type.endsWith('_REQUEST')) return true;
     else if(type.endsWith('_SUCCESS') || type.endsWith('_FAIL')) return false;
     return state;
-    /*
-    switch (type) {
-        case SIGNIN_REQUEST:
-        case FETCH_EVENT_REQUEST:
-        case CREATE_EVENT_REQUEST:
-        case FETCH_EVENTS_REQUEST:
-            return true;
-        case SIGNIN_SUCCESS:
-        case SIGNIN_FAIL:
-        case FETCH_EVENT_SUCCESS:
-        case FETCH_EVENT_FAIL:
-        case FETCH_EVENTS_SUCCESS:
-        case FETCH_EVENTS_FAIL:
-            return false;
-        default:
-            return state;
-    }*/
 };
 
 const notificationMessage = (state = null, {type, error}) => {
@@ -70,17 +41,6 @@ const notificationMessage = (state = null, {type, error}) => {
         return error.message || error
     }
     return null; // RESET_ERROR_MESSAGE returns null
-
-    /*switch (type) {
-        case SIGNIN_FAIL:
-        case FETCH_EVENT_FAIL:
-        case CREATE_EVENT_FAIL:
-        case FETCH_EVENTS_FAIL:
-            return error.message || error;
-        case RESET_ERROR_MESSAGE:
-        default:
-            return null;
-    }*/
 };
 
 const event = (state = null, {type, event}) => {
@@ -90,12 +50,10 @@ const event = (state = null, {type, event}) => {
         case FETCH_EVENT_FAIL:
         case RESET_EVENT:
             return null;
-        case EDIT_QUESTION_SUCCESS:
-        case HIGHLIGHT_QUESTION_SUCCESS: {
+        case UPDATE_QUESTION_SUCCESS: {
             const newQuestion = event.newQuestion;
             state.questions = state.questions.map(question => {
                 if (question._id === newQuestion._id) {
-                    //question.isHighlight = newQuestion.isHighlight;
                     return newQuestion
                 }
                 return question;

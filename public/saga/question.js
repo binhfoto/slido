@@ -3,20 +3,17 @@ import Api from "../service/api";
 
 import {
     POST_QUESTION_REQUEST,
-    HIGHLIGHT_QUESTION_REQUEST,
     DELETE_QUESTION_REQUEST,
-    EDIT_QUESTION_REQUEST
+    UPDATE_QUESTION_REQUEST
 } from '../constants';
 
 import {
     postQuestionSuccess,
     postQuestionFail,
-    highlightQuestionSuccess,
-    highlightQuestionFail,
     deleteQuestionSuccess,
     deleteQuestionFail,
-    editQuestionSuccess,
-    editQuestionFail
+    updateQuestionSuccess,
+    updateQuestionFail
 } from '../action';
 
 /******************************** POST QUESTION SAGA ********************************/
@@ -31,20 +28,6 @@ function * watchPostQuestion (action) {
 
 function * postQuestion () {
     yield takeEvery(POST_QUESTION_REQUEST, watchPostQuestion);
-};
-
-/******************************** HIGHLIGHT QUESTION SAGA ********************************/
-function * watchHighlightQuestion (action) {
-    const {question, error} = yield call(Api.updateQuestion, action.question);
-    if (question) {
-        yield put(highlightQuestionSuccess(question));
-    } else {
-        yield put(highlightQuestionFail(error));
-    }
-}
-
-function * highlightQuestion () {
-    yield takeEvery(HIGHLIGHT_QUESTION_REQUEST, watchHighlightQuestion);
 };
 
 /******************************** DELETE QUESTION SAGA ********************************/
@@ -62,22 +45,21 @@ function * deleteQuestion () {
 };
 
 /******************************** EDIT QUESTION SAGA ********************************/
-function * watchEditQuestion (action) {
+function * watchUpdateQuestion (action) {
     const {question, error} = yield call(Api.updateQuestion, action.question);
     if (question) {
-        yield put(editQuestionSuccess(question));
+        yield put(updateQuestionSuccess(question));
     } else {
-        yield put(editQuestionFail(error));
+        yield put(updateQuestionFail(error));
     }
 }
 
-function * editQuestion () {
-    yield takeEvery(EDIT_QUESTION_REQUEST, watchEditQuestion);
+function * updateQuestion () {
+    yield takeEvery(UPDATE_QUESTION_REQUEST, watchUpdateQuestion);
 }
 
 export default {
     postQuestion,
-    highlightQuestion,
     deleteQuestion,
-    editQuestion
+    updateQuestion
 }

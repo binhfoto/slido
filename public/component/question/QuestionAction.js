@@ -4,10 +4,9 @@ import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import {
-    highlightQuestion,
-    highlightQuestionFail,
     deleteQuestion,
-    editQuestion
+    updateQuestion,
+    updateQuestionFail
 } from '../../action';
 
 import QuestionEdit from './QuestionEdit';
@@ -38,9 +37,9 @@ class QuestionAction extends PureComponent {
         const isMax = event.questions.filter(_question => _question.isHighlight).length >= 3;
 
         if (newHighlightVal && isMax) {
-            this.props.highlightQuestionFail({message: 'Admin cannot highlight more than 3 questions'});
+            this.props.updateQuestionFail({message: 'Admin cannot highlight more than 3 questions'});
         } else {
-            this.props.highlightQuestion({
+            this.props.updateQuestion({
                 _id: question._id,
                 isHighlight: newHighlightVal
             });
@@ -92,7 +91,7 @@ class QuestionAction extends PureComponent {
                         openEditDialog={openEditDialog}
                         handleCloseDialog={this.handleCloseDialog.bind(this)}
                         question={this.props.question}
-                        editQuestion={this.props.editQuestion}
+                        editQuestion={this.props.updateQuestion}
                     />
                 </Menu>
             </div>
@@ -102,5 +101,5 @@ class QuestionAction extends PureComponent {
 
 export default connect(
     ({event}, {question}) => ({event, question}),
-    {highlightQuestion, highlightQuestionFail, deleteQuestion, editQuestion}
+    {updateQuestionFail, deleteQuestion, updateQuestion}
 )(QuestionAction);

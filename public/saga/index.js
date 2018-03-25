@@ -12,8 +12,7 @@ export default function* () {
         EventSaga.fetchEvents(),
         EventSaga.createEvent(),
         QuestionSaga.postQuestion(),
-        QuestionSaga.highlightQuestion(),
         QuestionSaga.deleteQuestion(),
-        QuestionSaga.editQuestion()
+        QuestionSaga.updateQuestion()
     ]);
 };

@@ -17,15 +17,12 @@ import {
     POST_QUESTION_REQUEST,
     POST_QUESTION_SUCCESS,
     POST_QUESTION_FAIL,
-    HIGHLIGHT_QUESTION_REQUEST,
-    HIGHLIGHT_QUESTION_SUCCESS,
-    HIGHLIGHT_QUESTION_FAIL,
     DELETE_QUESTION_REQUEST,
     DELETE_QUESTION_SUCCESS,
     DELETE_QUESTION_FAIL,
-    EDIT_QUESTION_REQUEST,
-    EDIT_QUESTION_SUCCESS,
-    EDIT_QUESTION_FAIL
+    UPDATE_QUESTION_REQUEST,
+    UPDATE_QUESTION_SUCCESS,
+    UPDATE_QUESTION_FAIL
 } from '../constants';
 
 export const signIn = (username, password) => ({
@@ -77,14 +74,10 @@ export const postQuestion = (question) => ({type: POST_QUESTION_REQUEST, questio
 export const postQuestionSuccess = (newQuestion) => ({type: POST_QUESTION_SUCCESS, event: {newQuestion}});
 export const postQuestionFail = (error) => ({type: POST_QUESTION_FAIL, error});
 
-export const highlightQuestion = (question) => ({type: HIGHLIGHT_QUESTION_REQUEST, question});
-export const highlightQuestionSuccess = (newQuestion) => ({type: HIGHLIGHT_QUESTION_SUCCESS, event: {newQuestion}});
-export const highlightQuestionFail = (error) => ({type: HIGHLIGHT_QUESTION_FAIL, error});
-
 export const deleteQuestion = (question) => ({type: DELETE_QUESTION_REQUEST, question});
 export const deleteQuestionSuccess = (deletedQuestion) => ({type: DELETE_QUESTION_SUCCESS, event: {deletedQuestion}});
 export const deleteQuestionFail = (error) => ({type: DELETE_QUESTION_FAIL, error});
 
-export const editQuestion = (question) => ({type: EDIT_QUESTION_REQUEST, question});
-export const editQuestionSuccess = (newQuestion) => ({type: EDIT_QUESTION_SUCCESS, event: {newQuestion}});
-export const editQuestionFail = (error) => ({type: EDIT_QUESTION_FAIL, error});
+export const updateQuestion = (question) => ({type: UPDATE_QUESTION_REQUEST, question});
+export const updateQuestionSuccess = (newQuestion) => ({type: UPDATE_QUESTION_SUCCESS, event: {newQuestion}});
+export const updateQuestionFail = (error) => ({type: UPDATE_QUESTION_FAIL, error});
