@@ -65,3 +65,5 @@ mongo-data/*
 
 dist/*
 dist/js/*
+
+public/index.html

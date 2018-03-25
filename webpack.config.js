@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./server/config');
 
 const webpackConfig = {
@@ -48,6 +49,10 @@ const webpackConfig = {
         new webpack.DefinePlugin({
             ADMIN_API_URL: JSON.stringify(config.url),
             ENABLE_REDUX_DEV_TOOL: JSON.stringify(true)
+        }),
+        new HtmlWebpackPlugin({
+            template: 'public/template/index.html',
+            filename:  __dirname + '/public/index.html'
         })
     ],
 
